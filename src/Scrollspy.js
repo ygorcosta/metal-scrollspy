@@ -58,6 +58,7 @@ class Scrollspy extends State {
 	 * Checks position of elements and activate the one in region.
 	 */
 	checkPosition() {
+		console.log('scrollspy - checkPosition');
 		var scrollHeight = this.getScrollHeight_();
 		var scrollTop = Position.getScrollTop(this.scrollElement);
 
@@ -101,6 +102,7 @@ class Scrollspy extends State {
 	findBestRegionAt_() {
 		var index = -1;
 		var origin = this.getCurrentPosition();
+		console.log('findBestRegionAt_ - origin -> ', origin);
 		if (this.regions.length > 0 && origin >= this.regions[0].top) {
 			for (var i = 0; i < this.regions.length; i++) {
 				var region = this.regions[i];
@@ -111,6 +113,7 @@ class Scrollspy extends State {
 				}
 			}
 		}
+		console.log('findBestRegionAt_ - index -> ', index);
 		return index;
 	}
 
@@ -120,6 +123,7 @@ class Scrollspy extends State {
 	 */
 	getCurrentPosition() {
 		var scrollTop = Position.getScrollTop(this.scrollElement);
+		console.log('getCurrentPosition - scrollTop -> ', scrollTop);
 		return scrollTop + this.offset + this.scrollElementRegion_.top;
 	}
 
@@ -168,6 +172,7 @@ class Scrollspy extends State {
 
 		this.scrollHandle_.dispose();
 		this.scrollHandle_ = dom.on(event.newVal, 'scroll', this.checkPosition.bind(this));
+		console.log('onScrollElementChanged_ - scrollHandle_ -> ', this.scrollHandle_);
 	}
 
 	/**
@@ -175,6 +180,7 @@ class Scrollspy extends State {
 	 * nodes can be added and removed.
 	 */
 	refresh() {
+		console.log('scrollspy - refresh');
 		// Removes the "active" class from all current regions.
 		this.deactivateAll();
 
